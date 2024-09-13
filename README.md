@@ -1,8 +1,8 @@
 # Identificação
 
-* Nome: 
-* Email (@ccc): 
-* Matrícula: 
+* Nome: Vinícius de Oliveira Porto
+* Email (@ccc): vinicius.oliveira.porto@ccc.ufcg.edu.br
+* Matrícula: 123110505
 
 # Roteiro: Fila de Prioridade
 
