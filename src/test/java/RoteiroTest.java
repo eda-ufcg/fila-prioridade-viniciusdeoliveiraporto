@@ -1,4 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 public class RoteiroTest {
@@ -227,7 +228,8 @@ public class RoteiroTest {
 		fila.add("f", 6);
 		fila.add("g", 7);
 
-		/*
+		assertEquals(7, fila.size());
+		
 		assertEquals("g", fila.removeNext());
 		assertEquals("f", fila.removeNext());
 		assertEquals("e", fila.removeNext());
@@ -235,7 +237,6 @@ public class RoteiroTest {
 		assertEquals("c", fila.removeNext());
 		assertEquals("b", fila.removeNext());
 		assertEquals("a", fila.removeNext());
-		*/
 	}
 
 }

@@ -3,6 +3,7 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 	private Pair[] fila;
 	private int head;
 	private int last;
+	private int size;
 
 	public InsereOrdenadoFilaPrioridade(int capacidade) {
 		this.fila = new Pair[capacidade];
@@ -11,7 +12,7 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 	}
 	
 	private boolean isFull(){
-		return this.last + 1 == this.head;
+		return ((this.last + 1) % this.fila.length)  == this.head;
 	}
 
 	private boolean isEmpty(){
@@ -21,6 +22,8 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 	// criar um Pair e inserir de forma ordenada decrescente no array.
 	public void add(String elemento, int prioridade) {
 		if (isFull()) resize();
+
+		this.size ++;
 
 		Pair newPair = new Pair(elemento, prioridade);
 
@@ -48,6 +51,7 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 		if( isEmpty() ) return "Empty queue";
 
 		String remove = this.fila[this.head].getElemento();
+		this.size --;
 
 		if(this.head == this.last){
 			this.head = -1;
@@ -61,15 +65,17 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 
 	private void resize(){
 		Pair[] newFila = new Pair[this.fila.length * 2];
-		int i = this.head;
+		int j = this.head;
+		int end = size();
 
-		for(int j = 0 ; j < this.fila.length ; j++){
-			newFila[j] = this.fila[i];
-			i = (i+1) % this.fila.length;
+		for(int i = 0 ; i < end ; i++){
+			newFila[i] = this.fila[j];
+			j = (j+1) % this.fila.length;
 		}
 
 		this.head = 0;
-		this.last = this.fila.length-1;
+		this.last = end-1;
+
 		this.fila = newFila;
 	}
 
@@ -79,5 +85,7 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
         this.fila[j] = aux;
     }
 
-
+	public int size(){
+		return this.size;
+	}
 }
